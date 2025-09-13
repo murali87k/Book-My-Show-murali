@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Checkout Code from GitHub') {
+            steps {
+                git branch: 'main', url: 'https://github.com/murali87k/Book-My-Show-murali.git'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                echo "Run SonarQube analysis here"
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+    }
+}
